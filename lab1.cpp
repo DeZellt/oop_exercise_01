@@ -6,8 +6,8 @@ int main() {
 
   uint32_t first;
   uint64_t second;
-  uint32_t onlyfirst = 0x1234;
-  uint64_t onlysecond = 0x12345678;
+  uint32_t first2;
+  uint64_t second2;
   const uint32_t bitleft = 3;
   const uint32_t bitright = 5;
   uint32_t incfirst;
@@ -16,12 +16,15 @@ int main() {
   std::cout << "Введите данные в следующем формате: *32-битовая строка* + *64-битовая строка*.\n";
   std::cin >> first >> second;
   bitstring a{first, second};
-  bitstring f{onlyfirst};
-  bitstring s{0 , onlysecond};
-  bitstring test{onlyfirst, onlysecond};
+  std::cout << "Введите данные для второй строки в следующем формате: *32-битовая строка* + *64-битовая строка*.\n";
+  std::cin >> first2 >> second2;
+  bitstring f{first2};
+  bitstring s{0, second2};
+  bitstring test{first2, second2};
   bitstring zero{};
 
-  std::cout << "Сейчас будут выведены следующие строки через отступ - " << onlyfirst << " 0, 0 " << onlysecond << ", 0 0." << std::endl;
+
+  std::cout << "Сейчас будут выведены следующие строки через отступ - " << first2 << " 0, 0 " << second2 << ", 0 0." << std::endl;
   f.print();
   s.print();
   zero.print();

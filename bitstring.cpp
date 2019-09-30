@@ -56,7 +56,7 @@ void bitstring::shiftLeft(int32_t i) { // сдвиг на произвольно
 void bitstring::shiftLeftOne() { // сдвиг влево на один бит
     const uint64_t max = 0x80000000;
     m_first <<= 1;
-    if ((m_second & max) == 1) m_first++;
+    if ((m_second & max) == max) m_first++;
     m_second <<= 1;
 }
 
@@ -80,15 +80,9 @@ int32_t bitstring::countone() const { // считает кол-во единиц
     return count;
 }
 
-bool bitstring::equal(const bitstring& r) const { // проверяет равенство по кол-ву единиц
-    if (countone() == r.countone()) return true;
-    else return false;
-}
+bool bitstring::equal(const bitstring& r) const {return(countone() == r.countone());}
 
-bool bitstring::include(const bitstring& r) const {
-    if (((m_first & r.getF()) == r.getF()) && ((m_second & r.getS()) == r.getS())) return true;
-    return false;
-}
+bool bitstring::include(const bitstring& r) const {return (((m_first & r.getF()) == r.getF()) && ((m_second & r.getS()) == r.getS()));}
 
 uint64_t bitstring::getS() const {return m_second;}
 uint32_t bitstring::getF() const {return m_first;}
